@@ -1,9 +1,8 @@
 #include "libft.h"
 
-
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(dest);
 	if (size <= len)
@@ -13,4 +12,4 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		dest[len++] = *(src++);
 	dest[len] = 0;
 	return (len + ft_strlen(src));
-} 
+}

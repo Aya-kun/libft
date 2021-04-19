@@ -8,7 +8,8 @@ char	*ft_strdup(char *src)
 
 	i = 0;
 	len = ft_strlen(src);
-	if ((ptr = (char*)malloc(sizeof(char) * (len + 1))) == NULL)
+	ptr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!ptr)
 		return (NULL);
 	while (i < len)
 	{
@@ -18,4 +19,3 @@ char	*ft_strdup(char *src)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
