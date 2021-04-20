@@ -1,45 +1,45 @@
 #include "libft.h"
 
-#include "libft.h"
-
-long int	ft_abs(long int nbr)
+static char	*ft_strreve(char *s)
 {
-	return ((nbr < 0) ? -nbr : nbr);
-}
-
-int			ft_len(long int nbr)
-{
+	int		i;
 	int		len;
+	char	tmp;
 
-	len = (nbr <= 0) ? 1 : 0;
-	while (nbr != 0)
+	i = 0;
+	len = ft_strlen(s);
+	while (i < len / 2)
 	{
-		nbr = nbr / 10;
-		len++;
+		tmp = s[i];
+		s[i] = s[len - i - 1];
+		s[len - i - 1] = tmp;
+		i++;
 	}
-	return (len);
+	return (s);
 }
 
 char		*ft_itoa(int n)
 {
-	int		len;
+	char	arr[12];
+	int		i;
 	int		sign;
-	char	*c;
 
+	ft_memset(arr, 0, 12);
+	i = 0;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	else if (n == 0)
+		return (ft_strdup("0"));
 	sign = (n < 0) ? -1 : 1;
-	len = ft_len(n);
-	c = (char *)malloc(sizeof(char) * len + 1);
-	if (c == NULL)
-		return (0);
-	c[len] = '\0';
-	len--;
-	while (len >= 0)
+	n = (n < 0) ? -n : n;
+	while (n > 0)
 	{
-		c[len] = '0' + ft_abs(n % 10);
-		n = ft_abs(n / 10);
-		len--;
+		arr[i] = (n % 10) + '0';
+		n /= 10;
+		i++;
 	}
-	if (sign == -1)
-		c[0] = '-';
-	return (c);
+	if (sign < 0)
+		arr[i] = '-';
+	ft_strreve(arr);
+	return (ft_strdup(arr));
 }
