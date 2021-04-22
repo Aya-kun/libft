@@ -22,6 +22,8 @@ char
 	size_t	start;
 	size_t	end;
 
+	if (!s1 && !set)
+		return (0);
 	start = 0;
 	while (s1[start] && ft_char_in_set(s1[start], set))
 		start++;
